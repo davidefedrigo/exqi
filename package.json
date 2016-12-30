@@ -1,0 +1,9 @@
+{
+  "name": "exqi",
+  "version": "0.0.1",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "elm": "^0.18.0"
+  }
+}

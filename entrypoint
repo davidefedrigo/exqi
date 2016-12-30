@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+if [ "$1" == "mix" ]; then
+  exec "$@"
+elif [ -n "$1" ]; then
+  sh -c "$@"
+else
+  yarn
+  ./node_modules/elm/binwrappers/elm-reactor -a 0.0.0.0
+  # mix entrypoint
+  # mix phoenix.server
+fi

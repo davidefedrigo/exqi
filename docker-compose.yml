@@ -3,3 +3,5 @@ web:
   volumes:
     - .:/code
   working_dir: /code
+  ports:
+    - 8000:8000

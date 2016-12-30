@@ -1,11 +1,18 @@
-FROM ubuntu:14.04
+FROM debian:stretch
 
-RUN \
-  apt-get update && \
+RUN apt-get update && \
   apt-get -y upgrade && \
-  apt-get install -y nodejs nodejs-legacy npm build-essential
+  apt-get install -qy apt-utils \
+                      curl \
+                      gnupg2 && \
+  curl -sL https://deb.nodesource.com/setup_7.x | bash - && \
+  apt-get install -qy nodejs && \
+  npm install -g yarn
 
-RUN npm install -g elm
-RUN npm install -g elm-test
+RUN groupadd -g 1001 app && \
+  useradd -g 1001 -u 1001 --system --create-home app
 
-CMD ["bash"]
+USER app
+
+# CMD ["bash"]
+ENTRYPOINT ["./entrypoint"]
